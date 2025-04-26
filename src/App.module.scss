@@ -1,0 +1,104 @@
+// src/App.module.scss
+
+// Opcional: Si tienes variables Sass globales en _variables.scss
+// @use './styles/variables' as vars;
+
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; // Centra verticalmente el contenido principal
+  min-height: 100vh; // Asegura que ocupe al menos toda la altura de la ventana
+  padding: 2rem;
+  text-align: center;
+  overflow: hidden; // Previene barras de scroll inesperadas
+  background-color: var(--background-color,
+      #1a1a1a); // Usa variable global o define
+}
+
+.heroSection {
+  margin-bottom: 3rem; // Espacio antes del placeholder R3F
+  max-width: 800px; // Limita el ancho del texto
+}
+
+.headline {
+  font-size: clamp(2.5rem, 8vw, 5rem); // Tamaño de fuente responsive
+  font-weight: 900; // Fuente más gruesa
+  margin-bottom: 1rem;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+
+  // Efecto de texto degradado (Ejemplo)
+  background: linear-gradient(45deg,
+      #a855f7,
+      #ec4899,
+      #f59e0b); // Ajusta colores
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.subheadline {
+  font-size: clamp(1rem, 4vw, 1.3rem);
+  margin-bottom: 2rem;
+  color: rgba(255, 255, 255, 0.75); // Un gris claro
+  font-weight: 300;
+  max-width: 600px; // Más estrecho que el contenedor
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.stackList {
+  display: flex;
+  flex-wrap: wrap; // Para que quepan en pantallas pequeñas
+  gap: 0.8rem 1rem; // Espacio vertical y horizontal
+  justify-content: center; // Centra los elementos
+  margin-bottom: 2rem; // Espacio antes del siguiente elemento
+  align-items: center;
+
+  .stackItem {
+    // Estilo para cada tecnología
+    background-color: rgba(255, 255, 255, 0.08);
+    padding: 0.4rem 1rem;
+    border-radius: 999px; // Forma de píldora
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition:
+      background-color 0.3s ease,
+      transform 0.2s ease; // Transición suave
+
+    &:hover {
+      background-color: var(--accent-color,
+          #646cff); // Color de acento al pasar el ratón
+      color: #ffffff;
+      transform: translateY(-3px); // Pequeño efecto de elevación
+      cursor: default; // O pointer si fueran enlaces
+    }
+  }
+}
+
+.r3fPlaceholder {
+  width: 100%;
+  max-width: 800px; // Ajusta según necesites
+  height: 45vh; // Altura relativa a la ventana
+  min-height: 300px; // Altura mínima
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3)),
+    url("/placeholder-bg.jpg") center/cover no-repeat; // Fondo ejemplo
+  // O un color sólido: background-color: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px; // Bordes redondeados
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.2rem;
+  font-style: italic;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2); // Sombra sutil
+}
+
+.piePagina {
+  padding-top: 1rem;
+}
