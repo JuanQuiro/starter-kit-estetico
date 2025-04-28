@@ -1,80 +1,29 @@
-import React, { useRef, useEffect } from "react";
-import gsap from "gsap";
-import styles from "./App.module.scss";
+// App.tsx
+import React, { useState, useEffect } from "react";
+import LoadingScreen from "./components/LoadingScreen";
 
-function App() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const stackListRef = useRef<HTMLDivElement>(null);
-  const placeholderRef = useRef<HTMLDivElement>(null);
+const App: React.FC = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   useEffect(() => {
-    const ctx = gsap.context(() => {
-      gsap.from(headlineRef.current, {
-        duration: 1.2,
-        y: 80,
-        opacity: 0,
-        ease: "power3.out",
-        delay: 0.2,
-      });
+    // Simular tiempo de carga
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000);
 
-      if (stackListRef.current) {
-        gsap.from(stackListRef.current.children, {
-          duration: 0.8,
-          y: 30,
-          opacity: 0,
-          stagger: 0.1,
-          ease: "power2.out",
-          delay: 0.6,
-        });
-      }
-
-      gsap.from(placeholderRef.current, {
-        duration: 1,
-        scale: 0.95,
-        opacity: 0,
-        ease: "back.out(1.4)",
-        delay: 1.0,
-      });
-    }, containerRef);
-
-    return () => ctx.revert();
+    return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div ref={containerRef} className={styles.appContainer}>
-      <section className={styles.heroSection}>
-        <h1 ref={headlineRef} className={styles.headline}>
-          Stack Estatic Kit
-        </h1>
+    <>
+      <LoadingScreen isLoading={isLoading} />
 
-        <p className={styles.subheadline}>
-          El punto de partida ideal para crear experiencias web inmersivas,
-          estéticas y de alto rendimiento. Combinando las mejores herramientas
-          modernas.
-        </p>
-
-        <div ref={stackListRef} className={styles.stackList}>
-          <span className={styles.stackItem}>Vite</span>
-          <span className={styles.stackItem}>React</span>
-          <span className={styles.stackItem}>Three.js</span>
-          <span className={styles.stackItem}>R3F</span>
-          <span className={styles.stackItem}>GSAP</span>
-          <span className={styles.stackItem}>Sass</span>
-          <span className={styles.stackItem}>Modules</span>
-          <span className={styles.stackItem}>Million</span>
-        </div>
-      </section>
-
-      <div ref={placeholderRef} className={styles.r3fPlaceholder}>
-        <span>✨ Tu Experiencia 3D Comenzará Aquí ✨</span>
+      {/* El resto de tu aplicación aquí */}
+      <div className="app-content">
+        {!isLoading && <h1>Contenido de tu aplicación</h1>}
       </div>
-
-      <div className={styles.piePagina}>
-        Creado Por equipo <a href="https://ember-drago.tech/es">Ember Drago</a>
-      </div>
-    </div>
+    </>
   );
-}
+};
 
 export default App;
